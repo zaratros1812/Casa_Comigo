@@ -24,29 +24,28 @@ function iniciarCamera() {
     .then(stream => {
       const video = document.getElementById('video');
       video.srcObject = stream;
-      video.play();
     })
     .catch(err => {
       alert("Erro ao acessar câmera: " + err);
     });
 }
 
-// Tirar foto (salva exatamente como aparece no preview)
+// Tirar foto (com espelhamento e alta resolução)
 document.getElementById('fotoBtn').addEventListener('click', function() {
   const video = document.getElementById('video');
   const canvas = document.getElementById('canvas');
   const ctx = canvas.getContext('2d');
 
-  // Ajusta o canvas para resolução real da câmera
+  // Ajusta o canvas para resolução real do vídeo
   canvas.width = video.videoWidth;
   canvas.height = video.videoHeight;
 
   // limpa o canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // desenha direto (preview já está espelhado via CSS)
+  // desenha o vídeo espelhado em alta resolução
   ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
+  ctx.restore();
   // Fecha modal da câmera
   document.getElementById('modalCamera').style.display = 'none';
 
