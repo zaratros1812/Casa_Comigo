@@ -11,63 +11,17 @@ document.getElementById('cancelarBtn').addEventListener('click', function() {
   document.getElementById('aceite').checked = false;
 });
 
-// Confirmar → fecha primeiro modal e abre o da câmera
+// Confirmar → fecha modal e mostra contrato pronto
 document.getElementById('confirmarBtn').addEventListener('click', function() {
   document.getElementById('modalConfirmacao').style.display = 'none';
-  document.getElementById('modalCamera').style.display = 'block';
-  iniciarCamera();
-});
 
-// Iniciar câmera
-function iniciarCamera() {
-  navigator.mediaDevices.getUserMedia({ video: true })
-    .then(stream => {
-      const video = document.getElementById('video');
-      video.srcObject = stream;
-    })
-    .catch(err => {
-      alert("Erro ao acessar câmera: " + err);
-    });
-}
-
-// Tirar foto (com espelhamento e alta resolução)
-document.getElementById('fotoBtn').addEventListener('click', function() {
-  const video = document.getElementById('video');
-  const canvas = document.getElementById('canvas');
-  const ctx = canvas.getContext('2d');
-
-  // Ajusta o canvas para resolução real do vídeo
-  canvas.width = video.videoWidth;
-  canvas.height = video.videoHeight;
-
-  // limpa o canvas
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  // desenha o vídeo espelhado em alta resolução
-  ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-  ctx.restore();
-  // Fecha modal da câmera
-  document.getElementById('modalCamera').style.display = 'none';
-
-  // Mostra resultado no contrato
   const resultado = document.getElementById('resultado');
   resultado.innerHTML = `
     <p>Assinado para todo sempre:</p>
     <p><strong>Flávio Henrique Camilo Silva</strong> e <strong>Joyce de Paula Macedo</strong></p>
-    <div class="result-photo">
-      <p>Foto anexada abaixo:</p>
-    </div>
     <br>
     <button id="finalizarBtn">Finalizar</button>
   `;
-
-  // cria imagem responsiva e nítida
-  const img = new Image();
-  img.src = canvas.toDataURL("image/png");
-  img.style.maxWidth = "100%";
-  img.style.height = "auto";
-  img.style.borderRadius = "10px";
-  document.querySelector('.result-photo').appendChild(img);
 
   // Botão finalizar → gera PDF com print da tela inteira
   document.getElementById('finalizarBtn').addEventListener('click', function() {
