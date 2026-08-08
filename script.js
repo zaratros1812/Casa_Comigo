@@ -43,11 +43,6 @@ document.getElementById('fotoBtn').addEventListener('click', function() {
   // limpa o canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // aplica espelhamento horizontal
-  ctx.save();
-  ctx.translate(canvas.width, 0);
-  ctx.scale(-1, 1);
-
   // desenha o vídeo espelhado em alta resolução
   ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
   ctx.restore();
