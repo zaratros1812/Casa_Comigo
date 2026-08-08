@@ -29,7 +29,11 @@ function iniciarCamera() {
       alert("Erro ao acessar câmera: " + err);
     });
 }
-
+const ctx = canvas.getContext('2d');
+// espelha de volta ao desenhar
+ctx.translate(canvas.width, 0);
+ctx.scale(-1, 1);
+ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 // Tirar foto
 document.getElementById('fotoBtn').addEventListener('click', function() {
   const canvas = document.getElementById('canvas');
