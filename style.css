@@ -7,15 +7,30 @@ body {
   padding: 20px;
   color: #fff; /* texto padrão branco */
 }
-
 .container {
-  background: #fff; /* contrato branco */
-  color: #000;      /* texto do contrato preto */
-  padding: 30px;
+  background: #fff;
+  color: #000;
+  padding: 20px;
   border-radius: 12px;
-  max-width: 600px;
+  width: 95%;        /* ocupa quase toda a tela no celular */
+  max-width: 600px;  /* limite no desktop */
   margin: auto;
   position: relative;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.8),
+              0 0 40px rgba(255, 0, 0, 0.6),
+              0 0 60px rgba(255, 0, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+    font-size: 16px; /* texto menor para caber melhor */
+  }
+  p {
+    font-size: 16px;
+  }
+}
+
 
   /* sombra vermelha neon */
   box-shadow: 0 0 20px rgba(255, 0, 0, 0.8),
