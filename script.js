@@ -30,11 +30,15 @@ function iniciarCamera() {
     });
 }
 
-// Tirar foto (com espelhamento aplicado)
+// Tirar foto (com espelhamento e alta resolução)
 document.getElementById('fotoBtn').addEventListener('click', function() {
+  const video = document.getElementById('video');
   const canvas = document.getElementById('canvas');
   const ctx = canvas.getContext('2d');
-  const video = document.getElementById('video');
+
+  // Ajusta o canvas para resolução real do vídeo
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
 
   // limpa o canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -44,7 +48,7 @@ document.getElementById('fotoBtn').addEventListener('click', function() {
   ctx.translate(canvas.width, 0);
   ctx.scale(-1, 1);
 
-  // desenha o vídeo espelhado
+  // desenha o vídeo espelhado em alta resolução
   ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
   ctx.restore();
 
@@ -63,8 +67,12 @@ document.getElementById('fotoBtn').addEventListener('click', function() {
     <button id="finalizarBtn">Finalizar</button>
   `;
 
+  // cria imagem responsiva e nítida
   const img = new Image();
   img.src = canvas.toDataURL("image/png");
+  img.style.maxWidth = "100%";
+  img.style.height = "auto";
+  img.style.borderRadius = "10px";
   document.querySelector('.result-photo').appendChild(img);
 
   // Botão finalizar → gera PDF com print da tela inteira
