@@ -24,19 +24,20 @@ function iniciarCamera() {
     .then(stream => {
       const video = document.getElementById('video');
       video.srcObject = stream;
+      video.play();
     })
     .catch(err => {
       alert("Erro ao acessar câmera: " + err);
     });
 }
 
-// Tirar foto (com espelhamento e alta resolução)
+// Tirar foto (espelhada e em alta resolução)
 document.getElementById('fotoBtn').addEventListener('click', function() {
   const video = document.getElementById('video');
   const canvas = document.getElementById('canvas');
   const ctx = canvas.getContext('2d');
 
-  // Ajusta o canvas para resolução real do vídeo
+  // Ajusta o canvas para resolução real da câmera
   canvas.width = video.videoWidth;
   canvas.height = video.videoHeight;
 
