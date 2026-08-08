@@ -29,16 +29,24 @@ function iniciarCamera() {
       alert("Erro ao acessar câmera: " + err);
     });
 }
-const ctx = canvas.getContext('2d');
-// espelha de volta ao desenhar
-ctx.translate(canvas.width, 0);
-ctx.scale(-1, 1);
-ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-// Tirar foto
+
+// Tirar foto (com espelhamento aplicado)
 document.getElementById('fotoBtn').addEventListener('click', function() {
   const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
   const video = document.getElementById('video');
-  canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+
+  // limpa o canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // aplica espelhamento horizontal
+  ctx.save();
+  ctx.translate(canvas.width, 0);
+  ctx.scale(-1, 1);
+
+  // desenha o vídeo espelhado
+  ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+  ctx.restore();
 
   // Fecha modal da câmera
   document.getElementById('modalCamera').style.display = 'none';
@@ -59,21 +67,19 @@ document.getElementById('fotoBtn').addEventListener('click', function() {
   img.src = canvas.toDataURL("image/png");
   document.querySelector('.result-photo').appendChild(img);
 
-document.getElementById('finalizarBtn').addEventListener('click', function() {
-  const { jsPDF } = window.jspdf;
+  // Botão finalizar → gera PDF com print da tela inteira
+  document.getElementById('finalizarBtn').addEventListener('click', function() {
+    const { jsPDF } = window.jspdf;
 
-  html2canvas(document.querySelector('.container')).then(canvas => {
-    const imgData = canvas.toDataURL('image/png');
-    const pdf = new jsPDF('p', 'mm', 'a4');
+    html2canvas(document.querySelector('.container')).then(canvasFull => {
+      const imgData = canvasFull.toDataURL('image/png');
+      const pdf = new jsPDF('p', 'mm', 'a4');
 
-    // Dimensões da página A4
-    const pageWidth = pdf.internal.pageSize.getWidth();
-    const pageHeight = pdf.internal.pageSize.getHeight();
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
 
-    // Ajusta a imagem para caber na página inteira
-    pdf.addImage(imgData, 'PNG', 0, 0, pageWidth, pageHeight);
-
-    pdf.save("Contrato_de_Noivado.pdf");
+      pdf.addImage(imgData, 'PNG', 0, 0, pageWidth, pageHeight);
+      pdf.save("Contrato_de_Noivado.pdf");
+    });
   });
-});
 });
