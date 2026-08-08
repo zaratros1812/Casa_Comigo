@@ -112,12 +112,15 @@ p {
 }
 
 /* Vídeo responsivo */
+/* Espelhar a câmera horizontalmente */
 #video {
-  width: 100%; /* ocupa toda a largura disponível */
+  width: 100%;
   max-width: 350px;
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(255,0,0,0.6);
+  transform: scaleX(-1); /* espelha horizontalmente */
 }
+
 
 /* Canvas responsivo */
 #canvas {
