@@ -88,11 +88,6 @@ p {
   color: #fff;
 }
 
-#fotoBtn {
-  background: #d6336c;
-  color: #fff;
-}
-
 /* Moldura romântica */
 .hearts-frame {
   border: 8px solid pink;
@@ -103,24 +98,42 @@ p {
   background-size: 40px;
 }
 
-/* Modal da câmera com borda vermelha clara e sombra */
+/* Modal da câmera responsivo */
 #modalCamera .modal-content {
-  border: 2px solid #ff6666;   /* vermelho claro e fino */
-  border-radius: 15px;
-  box-shadow: 0 0 25px rgba(255,0,0,0.7); /* sombra vermelha neon */
-  background: #111; /* fundo escuro para combinar */
-  color: #fff;      /* texto branco */
-  padding: 20px;
-  position: relative;
-}
-
-/* Moldura da foto anexada */
-.result-photo {
   border: 2px solid #ff6666;
   border-radius: 15px;
-  padding: 10px;
-  box-shadow: 0 0 25px rgba(255,0,0,0.7); /* sombra vermelha neon */
-  display: inline-block;
-  margin-top: 15px;
-  background: #fff;
+  box-shadow: 0 0 25px rgba(255,0,0,0.7);
+  background: #111; /* fundo escuro */
+  color: #fff;
+  padding: 20px;
+  position: relative;
+  width: 90%; /* ocupa quase toda a largura no celular */
+  max-width: 400px; /* limite no desktop */
+}
+
+/* Vídeo responsivo */
+#video {
+  width: 100%; /* ocupa toda a largura disponível */
+  max-width: 350px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(255,0,0,0.6);
+}
+
+/* Canvas responsivo */
+#canvas {
+  width: 100%;
+  max-width: 350px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+/* Botão responsivo */
+#fotoBtn {
+  background: #d6336c;
+  color: #fff;
+  padding: 10px 20px;
+  margin-top: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  width: 100%; /* botão ocupa toda a largura no celular */
 }
