@@ -7,6 +7,7 @@ body {
   padding: 20px;
   color: #fff; /* texto padrão branco */
 }
+
 .container {
   background: #fff;
   color: #000;
@@ -16,6 +17,8 @@ body {
   max-width: 600px;  /* limite no desktop */
   margin: auto;
   position: relative;
+
+  /* sombra vermelha neon */
   box-shadow: 0 0 20px rgba(255, 0, 0, 0.8),
               0 0 40px rgba(255, 0, 0, 0.6),
               0 0 60px rgba(255, 0, 0, 0.4);
@@ -24,18 +27,14 @@ body {
 @media (max-width: 768px) {
   .container {
     padding: 15px;
-    font-size: 16px; /* texto menor para caber melhor */
   }
   p {
     font-size: 16px;
+    line-height: 1.4;
   }
-}
-
-
-  /* sombra vermelha neon */
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.8),
-              0 0 40px rgba(255, 0, 0, 0.6),
-              0 0 60px rgba(255, 0, 0, 0.4);
+  h2, h4 {
+    font-size: 20px;
+  }
 }
 
 h2, h4 {
@@ -76,4 +75,90 @@ p {
 
   /* borda e sombra neon vermelha */
   border: 2px solid #ff6666;
-  box-shadow
+  box-shadow: 0 0 20px rgba(255,0,0,0.8),
+              0 0 40px rgba(255,0,0,0.6),
+              0 0 60px rgba(255,0,0,0.4);
+}
+
+.modal-content h3, 
+.modal-content p {
+  color: #fff;
+}
+
+.modal-content button {
+  margin: 10px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#confirmarBtn {
+  background: #4b2e83;
+  color: #fff;
+}
+
+#cancelarBtn {
+  background: #aaa;
+  color: #fff;
+}
+
+#fotoBtn {
+  background: #d6336c;
+  color: #fff;
+  padding: 12px;
+  margin-top: 10px;
+  font-size: 16px;
+  border-radius: 50%; /* botão circular estilo câmera */
+  width: 60px;
+  height: 60px;
+}
+
+/* Moldura romântica */
+.hearts-frame {
+  border: 8px solid pink;
+  border-radius: 20px;
+  padding: 10px;
+  background-image: url('https://i.imgur.com/7yZ8FqF.png');
+  background-repeat: repeat;
+  background-size: 40px;
+}
+
+/* Modal da câmera responsivo */
+#modalCamera .modal-content {
+  border: 2px solid #ff6666;
+  border-radius: 15px;
+  box-shadow: 0 0 25px rgba(255,0,0,0.7);
+  background: #111;
+  color: #fff;
+  padding: 20px;
+  position: relative;
+  width: 90%;
+  max-width: 400px;
+}
+
+/* Vídeo responsivo e espelhado */
+#video {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(255,0,0,0.6);
+  transform: scaleX(-1); /* espelha horizontalmente */
+}
+
+/* Canvas responsivo */
+#canvas {
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+/* Foto anexada no contrato */
+.result-photo img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(255,0,0,0.6);
+}
